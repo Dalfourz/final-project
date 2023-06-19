@@ -10,6 +10,9 @@ export default function SearchBar() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState();
 
+  const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+  const posterPath = "https://image.tmdb.org/t/p/original/"
+
   function onSearch() {
     fetchMovies(searchQuery);
   }
@@ -17,35 +20,46 @@ export default function SearchBar() {
   async function fetchMovies() {
     setLoading(true);
     const { data } = await axios.get(
-      `https://www.omdbapi.com/?apikey=1fd6092d&s=${searchQuery}`
+      `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${API_KEY}`
     );
     setMovies(data);
     console.log(data);
     setLoading(false);
   }
 
+  // async function fetchMovies() {
+  //   setLoading(true);
+  //   const { data } = await axios.get(
+  //     `https://www.omdbapi.com/?apikey=1fd6092d&s=${searchQuery}`
+  //   );
+  //   setMovies(data);
+  //   console.log(data);
+  //   setLoading(false);
+  // }
+
   useEffect(() => {
     fetchMovies();
   }, []);
 
-  const slicedMovies = movies?.Search?.slice(0, 6);
+  const slicedMovies = movies?.results?.slice(0, 6);
   console.log(slicedMovies);
 
   return (
     <div className="">
-      <div className="flex flex-col m-auto text-center">
-        Search your favourite movies here:
+      <p className="font-bold text-center">Search your favourite movies here:</p>
+      <div className="flex m-auto justify-center items-center">
         <input
           required
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyUp={(e) => e.key === "Enter" && onSearch()}
           type="input"
           placeholder="Where the magic happens..."
-          className="border border-black"
+          className="border border-black rounded-lg xl:max-w-2xl mr-2 h"
         />
-        <button 
-        disabled={!searchQuery}
-        className="w-full max-w-sm bg-[#00AEAE] rounded-lg disabled:opacity-50">
+        <button
+          disabled={!searchQuery}
+          className=" w-full max-w-[40px] bg-[#00AEAE] rounded-lg disabled:opacity-50"
+        >
           <FontAwesomeIcon
             onClick={() => onSearch()}
             className="w-10 h-10 text-white"
@@ -83,19 +97,24 @@ export default function SearchBar() {
             ))}
           </div>
         ) : (
-          <div 
-          onClick={() => console.log('test')}
-          className="grid grid-cols-3 gap-1 hover:cursor-pointer">
+          <div
+            onClick={() => console.log("test")}
+            className="grid grid-cols-3 gap-1 hover:cursor-pointer"
+          >
             {slicedMovies?.map((movie) => (
               <div className="border border-gray-200 rounded-lg" key={movie.id}>
                 <div className="flex justify-center m-1">
-                  <img src={movie.Poster} alt="" className="rounded-lg" />
+                  <img
+                    src={`${posterPath}${movie.poster_path}`}
+                    alt=""
+                    className="rounded-lg"
+                  />
                 </div>
                 <div className="ml-1">
-                  <h1 className="font-bold">Title: {movie.Title}</h1>
-                  <p>Release Year: {movie.Year}</p>
-                  <p>Type: {movie.Type}</p>
-                  <p>Imdb ID: {movie.imdbID}</p>
+                  <h1 className="font-bold">Title: {movie.title}</h1>
+                  <p>Release Date: {movie.release_date}</p>
+                  <p>Rating: {movie.vote_average}</p>
+                  <p>Vote Count: {movie.vote_count}</p>
                 </div>
               </div>
             ))}
