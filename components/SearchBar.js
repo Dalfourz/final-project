@@ -4,6 +4,8 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ModalComponent from "./modals/VideoModal";
+import useModalStore from "@/zustand/store";
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,13 +13,15 @@ export default function SearchBar() {
   const [loading, setLoading] = useState();
 
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-  const posterPath = "https://image.tmdb.org/t/p/original/"
+  const posterPath = "https://image.tmdb.org/t/p/original/";
+
+  const { toggleModal } = useModalStore();
 
   function onSearch() {
     fetchMovies(searchQuery);
   }
 
-  async function fetchMovies() {
+  async function fetchMovies(searchQuery) {
     setLoading(true);
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${API_KEY}`
@@ -26,16 +30,6 @@ export default function SearchBar() {
     console.log(data);
     setLoading(false);
   }
-
-  // async function fetchMovies() {
-  //   setLoading(true);
-  //   const { data } = await axios.get(
-  //     `https://www.omdbapi.com/?apikey=1fd6092d&s=${searchQuery}`
-  //   );
-  //   setMovies(data);
-  //   console.log(data);
-  //   setLoading(false);
-  // }
 
   useEffect(() => {
     fetchMovies();
@@ -46,7 +40,9 @@ export default function SearchBar() {
 
   return (
     <div className="">
-      <p className="font-bold text-center">Search your favourite movies here:</p>
+      <p className="font-bold text-center">
+        Search your favourite movies here:
+      </p>
       <div className="flex m-auto justify-center items-center">
         <input
           required
@@ -98,7 +94,7 @@ export default function SearchBar() {
           </div>
         ) : (
           <div
-            onClick={() => console.log("test")}
+            onClick={toggleModal}
             className="grid grid-cols-3 gap-1 hover:cursor-pointer"
           >
             {slicedMovies?.map((movie) => (
@@ -118,6 +114,7 @@ export default function SearchBar() {
                 </div>
               </div>
             ))}
+            <ModalComponent />
           </div>
         )}
       </section>
