@@ -1,17 +1,27 @@
 "use client";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import { useState } from "react";
 
-function SearchInput() {
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+
+function SearchInput({ initialMovies }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [movies, setMovies] = useState(initialMovies);
+  
 
   async function fetchMovies(searchQuery) {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${API_KEY}`
     );
+    setMovies(data)
     console.log(data);
 
+  }
+
+  function onSearch() {
+    fetchMovies(searchQuery);
   }
 
   return (
@@ -43,5 +53,19 @@ function SearchInput() {
   );
 }
 
-console.log(SearchInput)
+export async function getServerSideProps() {
+  
+  const initialQuery = `fast` // Set your initial search query here
+  const { data } = await axios.get(
+    `https://api.themoviedb.org/3/search/movie?query=${initialQuery}&api_key=${API_KEY}`
+  );
+  const initialMovies = data;
+
+  return {
+    props: {
+      initialMovies,
+    },
+  };
+}
+
 export default SearchInput
