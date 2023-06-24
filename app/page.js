@@ -12,9 +12,9 @@ export default function Home() {
       <NavBar />
       <img src="/assets/undraw_awards_fieb.svg" alt="" 
       className="m-auto w-full xl:max-w-2xl mb-6"/>
-      <SearchInput />
-      {/* <SearchBar /> */}
-      <SearchResult />
+      {/* <SearchInput /> */}
+      <SearchBar />
+      {/* <SearchResult /> */}
     </main>
   )
 }

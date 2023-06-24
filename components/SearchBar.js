@@ -27,7 +27,7 @@ export default function SearchBar() {
       `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${API_KEY}`
     );
     setMovies(data);
-    console.log(data);
+    // console.log(data)
     setLoading(false);
   }
 
@@ -36,7 +36,6 @@ export default function SearchBar() {
   }, []);
 
   const slicedMovies = movies?.results?.slice(0, 6);
-  console.log(slicedMovies);
 
   return (
     <div className="">
