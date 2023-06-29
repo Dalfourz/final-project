@@ -6,6 +6,7 @@ import SearchInput from "@/components/SearchInput";
 import SearchResult from "@/components/SearchResult";
 
 
+
 export default function Home() {
   return (
     <main className="">

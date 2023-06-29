@@ -5,21 +5,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ModalComponent from "./modals/VideoModal";
-import useModalStore from "@/zustand/store";
+import { useModalStore, createIdStore } from "@/zustand/store";
+import MovieCards from "./MovieCards";
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState();
+  const [selectedMovieId, setSelectedMovieId] = useState("");
 
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-  const posterPath = "https://image.tmdb.org/t/p/original/";
-
+  
   const { toggleModal } = useModalStore();
 
-  function onSearch() {
-    fetchMovies(searchQuery);
-  }
 
   async function fetchMovies(searchQuery) {
     setLoading(true);
@@ -27,7 +25,8 @@ export default function SearchBar() {
       `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${API_KEY}`
     );
     setMovies(data);
-    // console.log(data)
+    // console.log(data?.results[1].id)
+    // console.log(data);
     setLoading(false);
   }
 
@@ -35,7 +34,13 @@ export default function SearchBar() {
     fetchMovies();
   }, []);
 
+  function onSearch() {
+    fetchMovies(searchQuery);
+  }
+
   const slicedMovies = movies?.results?.slice(0, 6);
+  // const modalId = slicedMovies.
+  // console.log(slicedMovies)
 
   return (
     <div className="">
@@ -93,27 +98,17 @@ export default function SearchBar() {
           </div>
         ) : (
           <div
-            onClick={toggleModal}
+            // onClick={toggleModal}
+            // onClick={console.log('object')}
             className="grid grid-cols-3 gap-1 hover:cursor-pointer"
           >
             {slicedMovies?.map((movie) => (
               <div className="border border-gray-200 rounded-lg" key={movie.id}>
-                <div className="flex justify-center m-1">
-                  <img
-                    src={`${posterPath}${movie.poster_path}`}
-                    alt=""
-                    className="rounded-lg"
-                  />
-                </div>
-                <div className="ml-1">
-                  <h1 className="font-bold">Title: {movie.title}</h1>
-                  <p>Release Date: {movie.release_date}</p>
-                  <p>Rating: {movie.vote_average}</p>
-                  <p>Vote Count: {movie.vote_count}</p>
-                </div>
+                <MovieCards movie={movie}/>
               </div>
             ))}
-            <ModalComponent />
+
+            {/* <ModalComponent /> */}
           </div>
         )}
       </section>

@@ -1,17 +1,13 @@
-'use client'
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import Link from "next/link";
+import MovieImage from "./MovieImage";
 
-export default function MovieCards({ movie, posterPath }) {
+export default function MovieCards({ movie }) {
+  
   return (
-    <div className="border border-gray-200 rounded-lg">
-      <div className="flex justify-center m-1">
-        <img
-          src={`${posterPath}${movie.poster_path}`}
-          alt=""
-          className="rounded-lg"
-        />
+    <Link href={`/movie/${movie.id}`} 
+    className="border border-gray-200 rounded-lg">
+      <div className="relative h-72 max-h-72 flex-1">
+        <MovieImage movie={movie} fill/>
       </div>
       <div className="ml-1">
         <h1 className="font-bold">Title: {movie.title}</h1>
@@ -19,6 +15,6 @@ export default function MovieCards({ movie, posterPath }) {
         <p>Rating: {movie.vote_average}</p>
         <p>Vote Count: {movie.vote_count}</p>
       </div>
-    </div>
+    </Link>
   );
 }
