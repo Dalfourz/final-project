@@ -10,7 +10,7 @@ import SearchResult from "@/components/SearchResult";
 export default function Home() {
   return (
     <main className="">
-      <NavBar />
+
       <img src="/assets/undraw_awards_fieb.svg" alt="" 
       className="m-auto w-full xl:max-w-2xl mb-6"/>
       {/* <SearchInput /> */}
