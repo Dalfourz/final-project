@@ -74,7 +74,7 @@ export default function SearchBar() {
             className="border"
             onChange={handleInputChange}
           >
-            <option value="" disabled selected>
+            <option value="" disabled defaultValue={true}>
               Sort by
             </option>
             <option value="MOST_POPULAR">Most Popular</option>
