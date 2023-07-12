@@ -30,11 +30,12 @@ async function MoviePage({ params: { id } }) {
           <p>Release Date: {movie.release_date}</p>
           <p>{movie.overview}</p>
           <h2>Videos</h2>
-          <div className="">
-            {video?.slice(0, 3).map((video) => (
+
+          {video?.slice(0, 3).map((video) => (
+            <div className="mb-2">
               <VideoPlayer video={video} />
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

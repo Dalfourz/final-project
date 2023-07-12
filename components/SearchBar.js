@@ -58,7 +58,7 @@ export default function SearchBar() {
         >
           <FontAwesomeIcon
             onClick={() => onSearch()}
-            className="w-10 h-10 text-white"
+            className="w-5 h-5 p-1 text-white"
             icon={faMagnifyingGlass}
           />
         </button>
