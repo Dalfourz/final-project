@@ -16,7 +16,24 @@ async function MoviePage({ params: { id } }) {
   const movie = data;
   const officalVideos = movie.videos;
   const video = officalVideos.results;
-  console.log(video);
+
+  const trailers = video.filter((x) => x.type === "Trailer");
+  // const officialTrailer = filterByValue(trailers, "official" || "Trailer")
+  console.log(trailers)
+  // console.log(officialTrailer);
+
+
+  // function filterByValue(array, string) {
+  //   return array.filter((o) =>
+  //     Object.keys(o).some((k) => {
+  //       if (typeof o[k] === "string")
+  //         return o[k].toLowerCase().includes(string.toLowerCase());
+  //     })
+  //   );
+  // }
+
+  
+  // console.log(officialTrailer);
 
   return (
     <div className="my-6 mx-8">
@@ -31,7 +48,7 @@ async function MoviePage({ params: { id } }) {
           <p>{movie.overview}</p>
           <h2>Videos</h2>
 
-          {video?.slice(0, 3).map((video) => (
+          {trailers.slice(0, 3).map((video) => (
             <div className="mb-2">
               <VideoPlayer video={video} />
             </div>
