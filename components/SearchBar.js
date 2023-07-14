@@ -64,8 +64,8 @@ export default function SearchBar() {
         </button>
       </div>
 
-      <section>
-        <div className="mx-4">
+      <section className="max-w-7xl m-auto">
+        <div className="m-auto mx-4">
           <h1 className="mb-4">Search Results:</h1>
           <select
             value={selectedValue}
@@ -84,9 +84,12 @@ export default function SearchBar() {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-3 gap-1">
+          <div className="grid grid-cols-3 gap-3 mx-4 my-4 ">
             {new Array(6).fill(0).map((_, index) => (
-              <div className="border border-gray-200 rounded-lg" key={index}>
+              <div
+                className="border border-gray-200 rounded-lg w-[384px] max-w-sm m-auto"
+                key={index}
+              >
                 <div className="bg-gray-300 h-[240px] rounded-lg flex justify-center m-1">
                   <img src="" alt="" className="" />
                 </div>
@@ -100,43 +103,56 @@ export default function SearchBar() {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-3 gap-1 hover:cursor-pointer">
-            {selectedValue === "LOW_TO_HIGH"
-              ? movies
-                  .slice(0, 6)
-                  .sort(function(a, b) {
-                    return new Date(a.release_date) - new Date(b.release_date)
-                  })
-                  .map((movie) => (
-                    <div
-                      className="border border-gray-200 rounded-lg"
-                      key={movie.id}
-                    >
-                      <MovieCards movie={movie} />
-                    </div>
-                  ))
-              : selectedValue === "HIGH_TO_LOW"
-              ? movies
-                  .slice(0, 6)
-                  .sort(function(a, b) {
-                    return new Date(b.release_date) - new Date(a.release_date)
-                  })
-                  .map((movie) => (
-                    <div
-                      className="border border-gray-200 rounded-lg"
-                      key={movie.id}
-                    >
-                      <MovieCards movie={movie} />
-                    </div>
-                  ))
-              : movies?.slice(0, 6).map((movie) => (
-                  <div
-                    className="border border-gray-200 rounded-lg"
-                    key={movie.id}
-                  >
-                    <MovieCards movie={movie} />
-                  </div>
-                ))}
+          <div className="max-w-7xl m-auto">
+            <div className="grid grid-cols-3 gap-3 mx-4 my-4">
+              {selectedValue === "LOW_TO_HIGH"
+                ? movies
+
+                    .sort(function (a, b) {
+                      return (
+                        new Date(a.release_date) - new Date(b.release_date)
+                      );
+                    })
+                    .slice(0, 6)
+                    .map((movie) => (
+                      <div
+                        className="border border-gray-200 rounded-lg w-[384px] max-w-sm m-auto hover:cursor-pointer"
+                        key={movie.id}
+                      >
+                        <MovieCards movie={movie} />
+                      </div>
+                    ))
+                : selectedValue === "HIGH_TO_LOW"
+                ? movies
+
+                    .sort(function (a, b) {
+                      return (
+                        new Date(b.release_date) - new Date(a.release_date)
+                      );
+                    })
+                    .slice(0, 6)
+                    .map((movie) => (
+                      <div
+                        className="border border-gray-200 rounded-lg w-[384px] max-w-sm m-auto hover:cursor-pointer"
+                        key={movie.id}
+                      >
+                        <MovieCards movie={movie} />
+                      </div>
+                    ))
+                : movies
+                    .sort(function (a, b) {
+                      return new Date(b.vote_count) - new Date(a.vote_count);
+                    })
+                    .slice(0, 6)
+                    .map((movie) => (
+                      <div
+                        className="border border-gray-200 rounded-lg w-[384px] max-w-sm m-auto hover:cursor-pointer"
+                        key={movie.id}
+                      >
+                        <MovieCards movie={movie} />
+                      </div>
+                    ))}
+            </div>
           </div>
         )}
       </section>

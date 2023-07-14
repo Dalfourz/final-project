@@ -13,11 +13,11 @@ export default function MovieCards({ movie }) {
         )
       }
       </div>
-      <div className="ml-1">
-        <h1 className="font-bold">{movie.title}</h1>
-        <p>Release Date: {movie.release_date}</p>
-        <p>Rating: {movie.vote_average}</p>
-        <p>Vote Count: {movie.vote_count}</p>
+      <div className="ml-1 ">
+        <h1 className="font-bold text-center my-4">{movie.title}</h1>
+        <p className="text-center">Release Date: {movie.release_date}</p>
+        <p className="text-center">Rating: {movie.vote_average}</p>
+        {/* <p>Vote Count: {movie.vote_count}</p> */}
       </div>
     </Link>
   );

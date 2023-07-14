@@ -19,7 +19,7 @@ async function MoviePage({ params: { id } }) {
 
   const trailers = video.filter((x) => x.type === "Trailer");
   // const officialTrailer = filterByValue(trailers, "official" || "Trailer")
-  console.log(trailers)
+  // console.log(trailers)
   // console.log(officialTrailer);
 
 

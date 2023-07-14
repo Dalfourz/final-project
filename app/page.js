@@ -12,7 +12,7 @@ export default function Home() {
     <main className="">
 
       <img src="/assets/undraw_awards_fieb.svg" alt="" 
-      className="m-auto w-full xl:max-w-2xl mb-6"/>
+      className="w-96 m-auto md:w-full md:max-w-xl mb-6 "/>
       {/* <SearchInput /> */}
       <SearchBar />
       {/* <SearchResult /> */}

@@ -4,18 +4,19 @@ import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <div className="mx-8 my-8">
-      <div className="flex justify-between">
-        <Link href="/">
-          <div className="flex items-center hover:cursor-pointer">
+    <div className="mt-8 md:mx-8 md:my-8 md:m-auto">
+      <div className="md:flex md:justify-between md:items-center">
+        <Link href="/"
+        className="">
+          <div className="flex hover:cursor-pointer justify-center md:m-auto mb-2">
             <FontAwesomeIcon
               icon={faFilm}
-              className="w-10 h-10 text-4xl mr-2"
+              className="w-10 h-10 mr-2"
             />
             <h1 className="font-bold text-2xl">CineBase</h1>
           </div>
         </Link>
-        <ul className="flex justify-around items-center mx-8 gap-8 text-lg">
+        <ul className="justify-around items-center mx-8 gap-8 text-lg hidden md:flex">
           {/* Note to self, fix animation later */}
           <li className="relative group">
             <Link href="/">
