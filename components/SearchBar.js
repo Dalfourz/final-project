@@ -104,7 +104,7 @@ export default function SearchBar() {
           </div>
         ) : (
           <div className="max-w-7xl m-auto">
-            <div className="grid grid-cols-3 gap-3 mx-4 my-4">
+            <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-3 mx-4 my-4">
               {selectedValue === "LOW_TO_HIGH"
                 ? movies
 

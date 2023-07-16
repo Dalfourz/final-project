@@ -4,7 +4,7 @@ const nextConfig = {
     domains: ["image.tmdb.org"],
     
   },
-  remotePatterns: [{ protocol: "https:", hostname: "**.imgur.com" }],
 };
+// remotePatterns: [{ protocol: "https:", hostname: "**.imgur.com" }],
 
 module.exports = nextConfig;

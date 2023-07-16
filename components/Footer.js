@@ -3,10 +3,10 @@ import tmdbLogo from "../public/assets/blue_square_2_tmdb.svg";
 
 function Footer() {
   return (
-    <section className="bg-black text-white text-center py-8">
+    <section className="bg-black text-white text-center py-6 lg:fixed bottom-0 w-screen">
       <div className="">
         <p className="">© Julius 2023</p>
-        <p>
+        <p className="">
           This product uses the TMDB API but is not endorsed or certified by
           TMDB
         </p>

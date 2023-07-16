@@ -22,7 +22,6 @@ async function MoviePage({ params: { id } }) {
   // console.log(trailers)
   // console.log(officialTrailer);
 
-
   // function filterByValue(array, string) {
   //   return array.filter((o) =>
   //     Object.keys(o).some((k) => {
@@ -32,28 +31,28 @@ async function MoviePage({ params: { id } }) {
   //   );
   // }
 
-  
   // console.log(officialTrailer);
 
   return (
     <div className="my-6 mx-8">
-      <div className="flex ">
-        <div className="relative w-[calc(100%/2)] h-screen">
+      <div className="md:flex   ">
+        <div className="relative md:w-[calc(100%/2)] h-screen md:mr-8">
           <MovieImage movie={movie} fill className="" />
         </div>
-        <div className="w-[calc(100%/2)]">
-          <h1 className="font-bold">{movie.title}</h1>
+        <div className="md:w-[calc(100%/2)] text-center">
+          <h1 className="font-bold text-xl">{movie.title}</h1>
           <h2 className="">{movie.tagline}</h2>
-          <p>Release Date: {movie.release_date}</p>
-          <p>{movie.overview}</p>
-          <h2>Videos</h2>
-
-          {trailers.slice(0, 3).map((video) => (
-            <div className="mb-2">
-              <VideoPlayer video={video} />
-            </div>
-          ))}
+          <p className="mb-2">Release Date: {movie.release_date}</p>
+          <p className="mb-2">{movie.overview}</p>
         </div>
+      </div>
+      <div className="flex-col">
+        <h2 className="text-lg font-semibold mb-2 text-center">Video Clips & Trailers</h2>
+        {trailers.slice(0, 3).map((video) => (
+          <div className="mb-3 m-auto">
+            <VideoPlayer video={video} />
+          </div>
+        ))}
       </div>
     </div>
   );
