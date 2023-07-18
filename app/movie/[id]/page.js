@@ -6,6 +6,7 @@ import axios from "axios";
 import ReactPlayer from "react-player";
 import { useParams } from "next/navigation";
 import VideoPlayer from "@/components/VideoPlayer";
+import CurrencyFormatter from "@/components/CurrencyFormatter";
 
 async function MoviePage({ params: { id } }) {
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
@@ -42,12 +43,22 @@ async function MoviePage({ params: { id } }) {
         <div className="md:w-[calc(100%/2)] text-center">
           <h1 className="font-bold text-xl">{movie.title}</h1>
           <h2 className="">{movie.tagline}</h2>
-          <p className="mb-2">Release Date: {movie.release_date}</p>
           <p className="mb-2">{movie.overview}</p>
+          <p className="mb-2">Release Date: {movie.release_date}</p>
+          <div>
+            <p className="font-semibold">Budget:</p>
+            <CurrencyFormatter movie={movie.budget} />
+          </div>
+          <div>
+            <p className="font-semibold">Revenue:</p>
+            <CurrencyFormatter movie={movie.revenue} />
+          </div>
         </div>
       </div>
       <div className="flex-col">
-        <h2 className="text-lg font-semibold mb-2 text-center">Video Clips & Trailers</h2>
+        <h2 className="text-lg font-semibold mb-2 text-center">
+          Video Clips & Trailers
+        </h2>
         {trailers.slice(0, 3).map((video) => (
           <div className="mb-3 m-auto">
             <VideoPlayer video={video} />

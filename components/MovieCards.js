@@ -2,6 +2,8 @@ import Link from "next/link";
 import MovieImage from "./MovieImage";
 
 export default function MovieCards({ movie }) {
+  const releaseDate = movie.release_date
+  const year = releaseDate.substring(0,4)
   
   return (
     <Link href={`/movie/${movie.id}`} 
@@ -15,7 +17,7 @@ export default function MovieCards({ movie }) {
       </div>
       <div className="ml-1 ">
         <h1 className="font-bold text-center my-4">{movie.title}</h1>
-        <p className="text-center">Release Date: {movie.release_date}</p>
+        <p className="text-center">Released : {year}</p>
         <p className="text-center">Rating: {movie.vote_average}</p>
         {/* <p>Vote Count: {movie.vote_count}</p> */}
       </div>

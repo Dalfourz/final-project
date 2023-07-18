@@ -12,6 +12,7 @@ export default function SearchBar() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState();
   const [selectedValue, setSelectedValue] = useState("");
+  const [showSorter, setShowSorter] = useState(false)
 
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -22,6 +23,7 @@ export default function SearchBar() {
   };
 
   async function fetchMovies(searchQuery) {
+    setShowSorter(true)
     setLoading(true);
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${API_KEY}`
@@ -31,6 +33,7 @@ export default function SearchBar() {
     );
     setMovies(sortedMovies);
     setLoading(false);
+    setShowSorter(false)
   }
 
   function onSearch() {
@@ -65,7 +68,7 @@ export default function SearchBar() {
       </div>
 
       <section className="max-w-7xl m-auto">
-        <div className="m-auto mx-4">
+        <div className="hidden m-auto mx-4">
           <h1 className="mb-4">Search Results:</h1>
           <select
             value={selectedValue}
@@ -116,7 +119,7 @@ export default function SearchBar() {
                     .slice(0, 6)
                     .map((movie) => (
                       <div
-                        className="border border-gray-200 rounded-lg w-[384px] max-w-sm m-auto hover:cursor-pointer"
+                        className="border border-gray-200 rounded-lg w-full max-w-sm m-auto hover:cursor-pointer mb-4"
                         key={movie.id}
                       >
                         <MovieCards movie={movie} />
@@ -133,7 +136,7 @@ export default function SearchBar() {
                     .slice(0, 6)
                     .map((movie) => (
                       <div
-                        className="border border-gray-200 rounded-lg w-[384px] max-w-sm m-auto hover:cursor-pointer"
+                        className="border border-gray-200 rounded-lg  w-full max-w-sm m-auto hover:cursor-pointer mb-4"
                         key={movie.id}
                       >
                         <MovieCards movie={movie} />
@@ -146,7 +149,7 @@ export default function SearchBar() {
                     .slice(0, 6)
                     .map((movie) => (
                       <div
-                        className="border border-gray-200 rounded-lg w-[384px] max-w-sm m-auto hover:cursor-pointer"
+                        className="border border-gray-200 rounded-lg w-full max-w-sm m-auto hover:cursor-pointer mb-4"
                         key={movie.id}
                       >
                         <MovieCards movie={movie} />

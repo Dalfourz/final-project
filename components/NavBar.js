@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <div className="mt-8 md:mx-8 md:my-8 md:m-auto">
+    <div className="mt-8 md:mx-8 md:my-8 md:m-auto min-h-full">
       <div className="md:flex md:justify-between md:items-center">
         <Link href="/"
         className="">

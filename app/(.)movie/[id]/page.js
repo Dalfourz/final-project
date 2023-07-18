@@ -52,7 +52,7 @@ function Modal() {
                 </div>
               </div>
               <button onClick={() => window.location.reload()} className="flex m-auto w-[150px] hover:border">
-                <p className="m-auto">Full Info</p>
+                <p className="m-auto border border-blue-400 rounded-md px-5">Full Info</p>
               </button>
             </div>
           </>
