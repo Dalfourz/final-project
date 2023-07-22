@@ -9,12 +9,13 @@ function VideoPlayer({ video }) {
 //   console.log(youTubePath)
 
   return (
-    <div className="">
-      <ReactPlayer url={`${youTubePath}${video.key}`}
+    <>
+      <ReactPlayer url={`${youTubePath}${key}`}
       width="100%"
-      // heigth="40%"
-      className="m-auto"/>
-    </div>
+      // heigth="100%"
+      controls={true}
+      className=""/>
+    </>
   );
 }
 
