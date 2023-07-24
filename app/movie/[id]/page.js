@@ -9,7 +9,7 @@ import { People } from "@mui/icons-material";
 async function MoviePage({ params: { id } }) {
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const OAUTH = process.env.NEXT_PUBLIC_OAUTH;
-  console.log(id)
+  console.log(id);
 
   const options = {
     method: "GET",
@@ -33,7 +33,6 @@ async function MoviePage({ params: { id } }) {
     // First API call
     const response = await axios.request(options);
     const people = response.data;
-    console.log(people.cast.slice(0,4))
 
     // Second API call
     const response2 = await axios.request(options2);
@@ -42,6 +41,14 @@ async function MoviePage({ params: { id } }) {
     const officalVideos = movie.videos;
     const video = officalVideos.results;
     const trailers = video.filter((x) => x.type === "Trailer");
+
+    // Actors & Director
+    const director = people.crew.find(
+      (crewMembers) => crewMembers.known_for_department === "Directing"
+    );
+    const actors = people.cast.filter(
+      (castMembers) => castMembers.known_for_department === "Acting"
+    );
 
     return (
       <div className="my-6 mx-8">
@@ -63,13 +70,16 @@ async function MoviePage({ params: { id } }) {
               <CurrencyFormatter movie={movie.revenue} />
             </div>
             <div>
-              <p>Director: </p>
+              <p>Director: {director.name}</p>
             </div>
-            <div>Actors:</div>
+            <div>
+              Actors:
+              {actors.slice(0, 8).map((actor) => (
+                <p>{actor.name}</p>
+              ))}
+            </div>
             <ul>
-              <li>
-
-              </li>
+              <li></li>
             </ul>
           </div>
         </div>
@@ -84,8 +94,8 @@ async function MoviePage({ params: { id } }) {
                 : "md:grid grid-flow-col md:grid-cols-3  "
             }
           >
-            {trailers.slice(0, 4).map((video) => (
-              <div className="mb-4 m-auto">
+            {trailers?.slice(0, 4).map((video) => (
+              <div className="mb-4 m-auto" key={id}>
                 <VideoPlayer video={video} className="" />
               </div>
             ))}
@@ -101,18 +111,15 @@ async function MoviePage({ params: { id } }) {
 
 export default MoviePage;
 
+// function filterByValue(array, string) {
+//   return array.filter((o) =>
+//     Object.keys(o).some((k) => {
+//       if (typeof o[k] === "string")
+//         return o[k].toLowerCase().includes(string.toLowerCase());
+//     })
+//   );
+// }
 
+// return (
 
-  
-  // function filterByValue(array, string) {
-  //   return array.filter((o) =>
-  //     Object.keys(o).some((k) => {
-  //       if (typeof o[k] === "string")
-  //         return o[k].toLowerCase().includes(string.toLowerCase());
-  //     })
-  //   );
-  // }
-
-  // return (
-
-  // );
+// );
