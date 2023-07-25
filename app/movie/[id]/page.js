@@ -39,8 +39,8 @@ async function MoviePage({ params: { id } }) {
     const movie = response2.data;
 
     const officalVideos = movie.videos;
-    const video = officalVideos.results;
-    const trailers = video.filter((x) => x.type === "Trailer");
+    const videos = officalVideos.results;
+    const trailers = videos.filter((video) => video.type === "Trailer");
 
     // Actors & Director
     const director = people.crew.find(
@@ -58,22 +58,24 @@ async function MoviePage({ params: { id } }) {
           </div>
           <div className="md:w-[calc(100%/2)] text-center">
             <h1 className="font-bold text-xl">{movie.title}</h1>
-            <h2 className="">{movie.tagline}</h2>
+            <h2 className="mb-4">{movie.tagline}</h2>
             <p className="mb-2">{movie.overview}</p>
-            <p className="mb-2">Release Date: {movie.release_date}</p>
-            <div>
+            <p className="font-semibold">Release Date:</p> 
+            <p className="mb-2 ">{movie.release_date}</p>
+            <div className="mb-2 ">
               <p className="font-semibold">Budget:</p>
               <CurrencyFormatter movie={movie.budget} />
             </div>
-            <div>
+            <div className="mb-2 ">
               <p className="font-semibold">Revenue:</p>
               <CurrencyFormatter movie={movie.revenue} />
             </div>
-            <div>
-              <p>Director: {director.name}</p>
+            <div className="mb-2 ">
+              <p className="font-semibold">Director:</p> 
+              <p>{director.name}</p>
             </div>
-            <div>
-              Actors:
+            <div className="mb-2 ">
+              <p className="font-semibold">Actors:</p>
               {actors.slice(0, 8).map((actor) => (
                 <p>{actor.name}</p>
               ))}
