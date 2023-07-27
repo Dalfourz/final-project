@@ -9,7 +9,7 @@ import CurrencyFormatter from "@/components/CurrencyFormatter";
 async function MoviePage({ params: { id } }) {
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const OAUTH = process.env.NEXT_PUBLIC_OAUTH;
-  console.log(id);
+
   
   const options = {
     method: "GET",
@@ -93,7 +93,7 @@ async function MoviePage({ params: { id } }) {
             className={
               trailers.length === 1
                 ? "m-auto w-full max-w-2xl "
-                : "md:grid grid-flow-col md:grid-cols-3  "
+                : "md:grid md:grid-cols-2 md:w-full lg:grid-cols-2"
             }
           >
             {trailers?.slice(0, 4).map((video) => (
