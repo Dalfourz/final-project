@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <div className="mt-8 md:mx-8 md:my-8 md:m-auto min-h-full">
-      <div className="md:flex md:justify-between md:items-center">
+    <div className="fixed top-0 w-full md:px-8 sm:py-4 md:py-8 md:m-auto bg-white shadow-sm z-10">
+      <div className="md:flex md:justify-between md:items-center ">
         <Link href="/"
         className="">
           <div className="flex hover:cursor-pointer justify-center md:m-auto mb-2">
@@ -16,6 +16,7 @@ export default function NavBar() {
             <h1 className="font-bold text-2xl">CineBase</h1>
           </div>
         </Link>
+        <div></div>
         <ul className="justify-around items-center mx-8 gap-8 text-lg hidden md:flex">
           {/* Note to self, fix animation later */}
           <li className="relative group">

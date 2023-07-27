@@ -11,7 +11,7 @@ export default function MovieCards({ movie }) {
       <div className="relative h-72 max-h-72 flex-1">
         {movie.poster_path ? 
         (<MovieImage movie={movie} fill/>) : ( 
-          <p className="text-center">Sadly, we couldn't find any image here :( </p>
+          <p className="text-center">Sadly, we couldn't find any image :( </p>
         )
       }
       </div>

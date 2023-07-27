@@ -7,12 +7,13 @@ import { useEffect, useState } from "react";
 import { useModalStore, createIdStore } from "@/zustand/store";
 import MovieCards from "./MovieCards";
 
+
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState();
   const [selectedValue, setSelectedValue] = useState("");
-  const [showSorter, setShowSorter] = useState(false)
+  const [showOption, setShowOption] = useState(false)
 
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -23,7 +24,7 @@ export default function SearchBar() {
   };
 
   async function fetchMovies(searchQuery) {
-    setShowSorter(true)
+    setShowOption(false)
     setLoading(true);
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${API_KEY}`
@@ -33,7 +34,7 @@ export default function SearchBar() {
     );
     setMovies(sortedMovies);
     setLoading(false);
-    setShowSorter(false)
+    setShowOption(true)
   }
 
   function onSearch() {
@@ -43,7 +44,7 @@ export default function SearchBar() {
   return (
     <div className="">
       <p className="font-bold text-center mb-4">
-        Search your favourite movies here:
+        Enter your favourite movie here:
       </p>
       <div className="flex m-auto justify-center items-center">
         <input
@@ -68,7 +69,8 @@ export default function SearchBar() {
       </div>
 
       <section className="max-w-7xl m-auto">
-        <div className="hidden m-auto mx-4">
+        {showOption ? (
+          <div className="m-auto mx-4">
           <h1 className="mb-4">Search Results:</h1>
           <select
             value={selectedValue}
@@ -85,8 +87,11 @@ export default function SearchBar() {
             <option value="HIGH_TO_LOW">Descending</option>
           </select>
         </div>
+        ): null}
+        
 
         {loading ? (
+          
           <div className="grid grid-cols-3 gap-3 mx-4 my-4 ">
             {new Array(6).fill(0).map((_, index) => (
               <div
@@ -108,6 +113,7 @@ export default function SearchBar() {
         ) : (
           <div className="max-w-7xl m-auto">
             <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-3 mx-4 my-4">
+
               {selectedValue === "LOW_TO_HIGH"
                 ? movies
 

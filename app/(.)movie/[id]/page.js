@@ -51,7 +51,7 @@ function Modal() {
                   <p className="text-center">{movie.tagline}</p>
                 </div>
               </div>
-              <button onClick={() => window.location.reload()} className="flex m-auto w-[150px] hover:border">
+              <button onClick={() => window.location.reload()} className="flex m-auto w-[150px] border-blue-400">
                 <p className="m-auto border border-blue-400 rounded-md px-5">Full Info</p>
               </button>
             </div>

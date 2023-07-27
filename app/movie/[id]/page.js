@@ -4,13 +4,13 @@ import MovieImage from "@/components/MovieImage";
 import axios from "axios";
 import VideoPlayer from "@/components/VideoPlayer";
 import CurrencyFormatter from "@/components/CurrencyFormatter";
-import { People } from "@mui/icons-material";
+
 
 async function MoviePage({ params: { id } }) {
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const OAUTH = process.env.NEXT_PUBLIC_OAUTH;
   console.log(id);
-
+  
   const options = {
     method: "GET",
     url: `https://api.themoviedb.org/3/movie/${id}/credits`,
@@ -51,7 +51,7 @@ async function MoviePage({ params: { id } }) {
     );
 
     return (
-      <div className="my-6 mx-8">
+      <div className="my-6 mx-8 mt-[120px]">
         <div className="md:flex mb-4">
           <div className="relative md:w-[calc(100%/2)] h-screen md:mr-8">
             <MovieImage movie={movie} fill className="" />
@@ -113,15 +113,3 @@ async function MoviePage({ params: { id } }) {
 
 export default MoviePage;
 
-// function filterByValue(array, string) {
-//   return array.filter((o) =>
-//     Object.keys(o).some((k) => {
-//       if (typeof o[k] === "string")
-//         return o[k].toLowerCase().includes(string.toLowerCase());
-//     })
-//   );
-// }
-
-// return (
-
-// );
