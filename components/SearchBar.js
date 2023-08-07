@@ -42,7 +42,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="">
+    <div className="mb-[200px]">
       <p className="font-bold text-center mb-4">
         Enter your favourite movie here:
       </p>
