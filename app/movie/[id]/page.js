@@ -86,19 +86,19 @@ async function MoviePage({ params: { id } }) {
           </div>
         </div>
         <div className="flex-col">
-          <h2 className="text-lg font-semibold mb-2 text-center">
+          <h2 className="text-xl font-semibold mt-10 mb-2 text-center">
             Video Clips & Trailers
           </h2>
           <div
             className={
               trailers.length === 1
-                ? "m-auto w-full max-w-2xl "
-                : "md:grid md:grid-cols-2 md:w-full lg:grid-cols-2"
+                ? "w-full max-w-2xl"
+                : "md:grid md:grid-cols-2 lg:grid-cols-2"
             }
           >
             {trailers?.slice(0, 4).map((video) => (
-              <div className="mb-4 m-auto" key={id}>
-                <VideoPlayer video={video} className="" />
+              <div className="p-4" key={id}>
+                <VideoPlayer video={video}/>
               </div>
             ))}
           </div>

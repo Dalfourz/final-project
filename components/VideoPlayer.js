@@ -13,12 +13,12 @@ function VideoPlayer({ video }) {
         <ReactPlayer
           url={`${youTubePath}${key}`}
           width="100%"
-          // heigth="100%"
+          heigth="100%"
           controls={true}
-          className=""
+          className="max-w-2xl m-auto"
         />
       ) : (
-        <p className="text-center">Sadly, we couldn't find any video </p>
+        <p className="text-center ">Sadly, we couldn't find any video </p>
       )}
     </>
   );
