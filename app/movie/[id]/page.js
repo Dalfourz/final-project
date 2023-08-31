@@ -56,7 +56,7 @@ async function MoviePage({ params: { id } }) {
           <div className="relative md:w-[calc(100%/2)] h-[480px] md:h-screen md:mr-8">
             <MovieImage movie={movie} fill className="" />
           </div>
-          <div className="md:w-[calc(100%/2)] text-center">
+          <div className="pt-2 md:w-[calc(100%/2)] text-center">
             <h1 className="font-bold text-xl">{movie.title}</h1>
             <h2 className="mb-4">{movie.tagline}</h2>
             <p className="mb-2">{movie.overview}</p>
