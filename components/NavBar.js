@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <div className="fixed top-0 w-full md:px-8 sm:py-4 md:py-4 md:m-auto backdrop-blur-lg shadow-sm z-10">
+    <div className="fixed top-0 w-full md:px-8 sm:py-4 md:py-4 md:m-auto backdrop-blur-lg shadow-sm z-10 pt-2">
       <div className="md:flex md:justify-between md:items-center ">
         <Link href="/"
         className="">
