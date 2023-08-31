@@ -44,7 +44,7 @@ export default function SearchBar() {
   return (
     <div className="mb-[200px]">
       <p className="font-bold text-center mb-4">
-        Enter your favourite movie here:
+        Search your favourite movie here:
       </p>
       <div className="flex m-auto justify-center items-center">
         <input
@@ -58,7 +58,7 @@ export default function SearchBar() {
         />
         <button
           disabled={!searchQuery}
-          className=" w-full max-w-[40px] bg-[#00AEAE] rounded-lg disabled:opacity-50"
+          className="hidden sm:block w-full max-w-[40px] bg-[#00AEAE] rounded-lg disabled:opacity-50"
         >
           <FontAwesomeIcon
             onClick={() => onSearch()}
