@@ -3,7 +3,7 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useModalStore, createIdStore } from "@/zustand/store";
 import MovieCards from "./MovieCards";
 
@@ -14,6 +14,7 @@ export default function SearchBar() {
   const [loading, setLoading] = useState();
   const [selectedValue, setSelectedValue] = useState("");
   const [showOption, setShowOption] = useState(false)
+  const ref = useRef(null)
 
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -35,11 +36,20 @@ export default function SearchBar() {
     setMovies(sortedMovies);
     setLoading(false);
     setShowOption(true)
+    scrollToElement()
   }
 
   function onSearch() {
     fetchMovies(searchQuery);
   }
+
+  const scrollToElement = () => {
+    ref.current?.scrollIntoView({behavior: 'smooth'})
+  };
+
+  // useEffect(() => {
+  //   scrollToElement()
+  // },[])
 
   return (
     <div className="mb-[200px]">
@@ -89,7 +99,7 @@ export default function SearchBar() {
         </div>
         ): null}
         
-
+        <div ref={ref}></div>
         {loading ? (
           
           <div className="grid grid-cols-3 gap-3 mx-4 my-4 ">
@@ -111,7 +121,7 @@ export default function SearchBar() {
             ))}
           </div>
         ) : (
-          <div className="max-w-7xl m-auto">
+          <div className="max-w-7xl m-auto " >
             <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-3 mx-4 my-4">
 
               {selectedValue === "LOW_TO_HIGH"
@@ -124,11 +134,11 @@ export default function SearchBar() {
                     })
                     .slice(0, 6)
                     .map((movie) => (
-                      <div
+                      <div 
                         className="border border-gray-200 rounded-lg w-full max-w-sm m-auto hover:cursor-pointer mb-4"
                         key={movie.id}
                       >
-                        <MovieCards movie={movie} />
+                        <MovieCards movie={movie}/>
                       </div>
                     ))
                 : selectedValue === "HIGH_TO_LOW"
@@ -164,6 +174,7 @@ export default function SearchBar() {
             </div>
           </div>
         )}
+        
       </section>
     </div>
   );
