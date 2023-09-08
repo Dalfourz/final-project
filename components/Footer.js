@@ -12,9 +12,9 @@ function Footer() {
           <h1 className="font-bold text-2xl">CineBase</h1>
         </div>
       </div>
-        <div>
+        <div className="">
           <p className="">© Julius 2023</p>
-          <p className="">
+          <p className="break-words">
             This product uses the TMDB API but is not endorsed or certified by
             TMDB
           </p>

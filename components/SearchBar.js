@@ -3,8 +3,8 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
-import { useModalStore, createIdStore } from "@/zustand/store";
+import { useRef, useState } from "react";
+import { useModalStore } from "@/zustand/store";
 import MovieCards from "./MovieCards";
 
 
@@ -64,15 +64,15 @@ export default function SearchBar() {
           onKeyUp={(e) => e.key === "Enter" && onSearch()}
           type="input"
           placeholder="Where the magic happens..."
-          className="border focus:outline-none rounded-lg xl:max-w-2xl mr-2 px-2 py-1 "
+          className="border focus:outline-none rounded-lg xl:max-w-2xl mr-2 px-2 py-2 "
         />
         <button
           disabled={!searchQuery}
-          className="hidden sm:block w-full max-w-[40px] bg-[#00AEAE] rounded-lg disabled:opacity-50"
+          className="hidden sm:block w-full max-w-[40px] bg-[#00AEAE] rounded-lg disabled:opacity-50 flex items-center content-center"
         >
           <FontAwesomeIcon
             onClick={() => onSearch()}
-            className="w-5 h-5 p-1 text-white"
+            className="w-5 h-5 p-2 text-white "
             icon={faMagnifyingGlass}
           />
         </button>
@@ -152,7 +152,7 @@ export default function SearchBar() {
                     .slice(0, 6)
                     .map((movie) => (
                       <div
-                        className="border border-gray-200 rounded-lg  w-full max-w-sm m-auto hover:cursor-pointer mb-4"
+                        className="border border-gray-200 rounded-lg w-full max-w-sm m-auto hover:cursor-pointer mb-4"
                         key={movie.id}
                       >
                         <MovieCards movie={movie} />

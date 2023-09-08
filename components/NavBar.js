@@ -1,22 +1,21 @@
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import HamburgerMenu from "./HamburgerMenu";
 
 export default function NavBar() {
   return (
     <div className="fixed top-0 w-full md:px-8 sm:py-4 md:py-4 md:m-auto backdrop-blur-lg shadow-sm z-10 pt-2">
-      <div className="md:flex md:justify-between md:items-center ">
-        <Link href="/"
-        className="">
-          <div className="flex hover:cursor-pointer justify-center md:m-auto mb-2">
-            <FontAwesomeIcon
-              icon={faFilm}
-              className="w-10 h-10 mr-2"
-            />
+      <div className="flex justify-between md:items-center ">
+        <Link href="/" className="">
+          <div className="flex hover:cursor-pointer justify-center md:m-auto m-2">
+            <FontAwesomeIcon icon={faFilm} className="w-10 h-10 mr-2" />
             <h1 className="font-bold text-2xl">CineBase</h1>
           </div>
         </Link>
-        <div></div>
+        <div className="p-2">
+          <HamburgerMenu className="md:hidden w-9 h-9 hover:cursor-pointer" />
+        </div>
         <ul className="justify-around items-center mx-8 gap-8 text-lg hidden md:flex">
           {/* Note to self, fix animation later */}
           <li className="relative group">
