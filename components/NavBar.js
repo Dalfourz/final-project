@@ -13,8 +13,8 @@ export default function NavBar() {
             <h1 className="font-bold text-2xl">CineBase</h1>
           </div>
         </Link>
-        <div className="p-2">
-          <HamburgerMenu className="md:hidden w-9 h-9 hover:cursor-pointer" />
+        <div className="md:hidden" >
+          <HamburgerMenu className="hover:cursor-pointer" />
         </div>
         <ul className="justify-around items-center mx-8 gap-8 text-lg hidden md:flex">
           {/* Note to self, fix animation later */}

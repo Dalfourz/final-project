@@ -19,8 +19,8 @@ export default function HamburgerMenu() {
     right
     isOpen={false}
     >
-      <Link href="/">Home</Link>
-      <Link href="#" className="cursor-not-allowed">
+      <Link href="/" className="p-4">Home</Link>
+      <Link href="#" className="cursor-not-allowed p-4">
         Contact Us
       </Link>
     </Menu>
