@@ -47,10 +47,6 @@ export default function SearchBar() {
     ref.current?.scrollIntoView({behavior: 'smooth'})
   };
 
-  // useEffect(() => {
-  //   scrollToElement()
-  // },[])
-
   return (
     <div className="mb-[200px]">
       <p className="font-bold text-center mb-4">

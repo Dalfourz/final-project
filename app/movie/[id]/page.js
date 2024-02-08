@@ -1,5 +1,3 @@
-// "use client";
-
 import MovieImage from "@/components/MovieImage";
 import axios from "axios";
 import VideoPlayer from "@/components/VideoPlayer";

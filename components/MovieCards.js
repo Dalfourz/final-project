@@ -19,7 +19,7 @@ export default function MovieCards({ movie }) {
         <h1 className="font-bold text-center my-4">{movie.title}</h1>
         <p className="text-center">Released : {year}</p>
         <p className="text-center">Rating: {movie.vote_average}</p>
-        {/* <p>Vote Count: {movie.vote_count}</p> */}
+
       </div>
     </Link>
   );
